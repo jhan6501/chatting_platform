@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Flack </title>
+        <style>
+            .channel {
+                width: 25vw;
+                padding: 0px;
+                margin-bottom: 10px;
+                border-style: solid;
+            }
+
+            .channelText {
+                width: 20vw;
+                height: 35px;
+                padding: 0px;
+                margin: 0px;
+            }
+
+            .channelSubmit {
+                width: 5vw;
+                height: 35px;
+                font-size: 10px;
+            }
+        </style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    </head>
+    
+    <body>
+        <script src="home.js"></script>
+        <div class= "container">
+            <p> username: <span id = "user_name"></span><p>
+        </div>
+        <div id= "channels">
+        </div>
+
+        <input class = "channelText" id = "newChannel" placeholder = "New Channel"> 
+        <button class = "channelSubmit" id = "submit"> New Channel </button>
+    </body>
+</html>
