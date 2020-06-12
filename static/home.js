@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     give_name();
-    
+    socket.emit("get channels")
+    console.log("test")
+
     document.getElementById("user_name").innerHTML = name;
 
     function loadChat(channel) {
@@ -27,6 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("pressed enter")
         }
     })
+
+
 
     socket.on("update channel list", channelList => {
         console.log("updating list")
@@ -50,4 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('#channels').append(div)  
         }
     })
+    
+    
 })
