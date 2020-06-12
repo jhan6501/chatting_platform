@@ -14,7 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
         channel.className = 'channel'
         channel.innerHTML = document.getElementById("newChannel").value
 
-        console.log("testing")
+        channel.onclick = () => {
+            console.log(channel.innerHTML)
+        }
         document.querySelector('#channels').append(channel)
     }
+    
 })

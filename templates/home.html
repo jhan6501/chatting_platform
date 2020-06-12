@@ -3,15 +3,32 @@
     <head>
         <title> Flack </title>
         <style>
+
+            .left {
+                position: relative;
+                width : 25vw;
+                height: 100vh;
+                float: left;
+                overflow-y: scroll;
+                
+            }
+
+            .right {
+                position: relative;
+                width: 75%;
+                float: left;
+                height: 100%;
+            }
+
             .channel {
-                width: 25vw;
+                width: 20vw;
                 padding: 0px;
                 margin-bottom: 10px;
                 border-style: solid;
             }
 
             .channelText {
-                width: 20vw;
+                width: 15vw;
                 height: 35px;
                 padding: 0px;
                 margin: 0px;
@@ -28,13 +45,23 @@
     
     <body>
         <script src="home.js"></script>
-        <div class= "container">
-            <p> username: <span id = "user_name"></span><p>
-        </div>
-        <div id= "channels">
+        
+        
+         
+        <div class = left>
+            
+                
+            <div class= "container">
+                <p> username: <span id = "user_name"></span><p>
+            </div>
+            <div id= "channels"></div>
+                   
+            <input class = "channelText" id = "newChannel" placeholder = "New Channel"> 
+            <button class = "channelSubmit" id = "submit"> New Channel </button>
         </div>
 
-        <input class = "channelText" id = "newChannel" placeholder = "New Channel"> 
-        <button class = "channelSubmit" id = "submit"> New Channel </button>
+        <div class = right>
+
+        </div>
     </body>
 </html>
