@@ -18,9 +18,17 @@ def index():
 @socketio.on("submit channel")
 def addChannel(channel):
     channelList.append(channel["channel"])
+    Channels[channel["channel"]] = [] 
     emit("update channel list", {"channelList": channelList} ,broadcast=True)
 
 @socketio.on("get channels")
 def giveChannels():
-    print ("got here")
     emit ("update channel list", {"channelList": channelList} ,broadcast=True)
+
+@socketio.on("add message")
+def addmessage(data):
+    message = data["message"]
+    channelToAdd = data["channel"]
+    Channels[channelToAdd].append(message)
+    
+    

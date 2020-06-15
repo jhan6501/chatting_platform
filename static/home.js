@@ -1,41 +1,70 @@
 document.addEventListener('DOMContentLoaded', () => {
     let name = "";
     let currChannel = null;
-    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
-
+    let socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+    
     function give_name() {
         name = prompt ("Please type in your name", "");
         
     }
     
-    give_name();
-    socket.emit("get channels")
-    console.log("test")
-
-    document.getElementById("user_name").innerHTML = name;
-
     function loadChat(channel) {
         document.getElementById("currChannel").innerHTML = channel;
     }
+    
+    function loadChannels() {
+        socket.emit("get channels")
+    }
 
+    function appendMessage(userMessage, currentChannel, name){
+        textToAdd = name + ": "+ userMessage
+        socket.emit('add message', {'message': textToAdd, 'channel': currentChannel})
+
+        let messageToAdd = document.createElement('div')
+        messageToAdd.className = 'chatMessage'
+        messageToAdd.innerHTML = textToAdd
+        document.querySelector('#messages').append(messageToAdd)  
+
+
+    }
+
+    give_name();
+    
+    loadChannels();
+
+    document.getElementById("user_name").innerHTML = name;
+
+    
     document.querySelector ("#submit").onclick = () => {
-
         socket.emit('submit channel', {'channel': document.getElementById("newChannel").value})
     }
     
     document.addEventListener('keydown', function(event) {
         //console.log("pressed a key")
         if (event.keyCode === 13) {
-            console.log("pressed enter")
+            let node = document.getElementById("userMessage")
+            console.log("node is:" + node)
+            text = node.value;
+            console.log("text is:" + text)
+            containsNonSpace = false;
+            console.log("text length is:" + text.length)
+            for (let i = 0; i < text.length; i++) {
+                console.log("in loop")
+                char = text.charAt(i)
+                
+                if (char != " ") {
+                    containsNonSpace = true
+                }
+            }
+            console.log(containsNonSpace)
+            if (containsNonSpace && currChannel != null) {
+                console.log("appending a message")
+                appendMessage(text, currChannel, name)
+            }
         }
     })
 
-
-
     socket.on("update channel list", channelList => {
-        console.log("updating list")
-        console.log("channel list is :" + channelList["channelList"])
-        
         channels = document.getElementById("channels")
         channels.innerHTML = "";
 
@@ -49,11 +78,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log("testing")
                 console.log(div.innerHTML)
                 currChannel = iChannel
+                document.getElementById("currChannel").innerHTML = currChannel
                 loadChat(currChannel);
             }
             document.querySelector('#channels').append(div)  
         }
     })
+    
     
     
 })
