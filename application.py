@@ -19,6 +19,9 @@ def index():
 def addChannel(channel):
     channelList.append(channel["channel"])
     Channels[channel["channel"]] = [] 
+    print ("this is a really big print statement so I dont miss anytihng")
+    print ("added a channel in backend")
+    print(channel)
     emit("update channel list", {"channelList": channelList} ,broadcast=True)
 
 @socketio.on("get channels")
@@ -30,5 +33,12 @@ def addmessage(data):
     message = data["message"]
     channelToAdd = data["channel"]
     Channels[channelToAdd].append(message)
+    emit ("display appended message", {"message": message}, broadcast = True)
     
+@socketio.on("get messages")
+def getMessages(data):
+    channel = data["channel"]
+    messages = Channels.get(channel)
+    name = data["name"]
+    emit ("load chat", {"messages": messages, "channel": channel, "name": name})
     
