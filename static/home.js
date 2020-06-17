@@ -8,10 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function clearMessageBoard(channel, name) {
-        if (currChannel === channel && name === document.getElementById("user_name").innerHTML) {
-            console.log("clearing")
-            document.getElementById("messages").innerHTML = "";
-        }
+        console.log("clearing")
+        document.getElementById("messages").innerHTML = "";
     }
 
     function loadChat(channel, name) {
@@ -97,18 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
         name = data["name"]
         console.log("name is: " + name)
         console.log("displayed name is:" + document.getElementById("user_name").innerHTML)
-
-        if (channel === currChannel && name === document.getElementById("user_name").innerHTML) {
             
-            console.log(message)
-            for (let i = 0; i < message.length; i++) {
-                currMessage = message[i];
-                let div = document.createElement('div')
-                div.className = 'chatMessage'
-                div.innerHTML = currMessage
+        console.log(message)
+        for (let i = 0; i < message.length; i++) {
+            currMessage = message[i];
+            let div = document.createElement('div')
+            div.className = 'chatMessage'
+            div.innerHTML = currMessage
 
-                document.querySelector('#messages').append(div)
-            }
+            document.querySelector('#messages').append(div)
         }
     })
 
