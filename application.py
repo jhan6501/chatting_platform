@@ -17,12 +17,15 @@ def index():
 
 @socketio.on("submit channel")
 def addChannel(channel):
-    channelList.append(channel["channel"])
-    Channels[channel["channel"]] = [] 
-    print ("this is a really big print statement so I dont miss anytihng")
-    print ("added a channel in backend")
-    print(channel)
-    emit("update channel list", {"channelList": channelList} ,broadcast=True)
+    
+    if (not (channel["channel"] in channelList)):
+        channelList.append(channel["channel"])
+        Channels[channel["channel"]] = [] 
+        print ("this is a really big print statement so I dont miss anytihng")
+        print ("added a channel in backend")
+        print(channel)
+        emit("update channel list", {"channelList": channelList} ,broadcast=True)
+    
 
 @socketio.on("get channels")
 def giveChannels():
