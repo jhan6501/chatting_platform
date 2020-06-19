@@ -2,73 +2,7 @@
 <html>
     <head>
         <title> Flack </title>
-        <style>
-
-            .left {
-                position: relative;
-                width : 25vw;
-                height: 100vh;
-                float: left;
-                overflow-y: scroll;
-                
-            }
-
-            .right {
-                position: relative;
-                margin-left: 25vw;
-                height: 100vh;
-            }
-
-            .channel {
-                width: 20vw;
-                padding: 0px;
-                margin-bottom: 10px;
-                border-style: solid;
-            }
-
-            .channelText {
-                width: 15vw;
-                height: 35px;
-                padding: 0px;
-                margin: 0px;
-            }
-
-            .channelSubmit {
-                width: 5vw;
-                height: 35px;
-                font-size: 10px;
-            }
-
-            .currChannel {
-                position: relative;
-                margin-left: 5px;
-                margin-bottom: 20px;
-                height: 35px;
-                font-size: 35px;
-            }
-            .messageBoard {
-                position: relative;
-                width: 75vw;
-                height: 80vh;
-                overflow-y: scroll;
-            }
-
-            .userMessage {
-                margin-left: 5px;
-                position: fixed;
-                width: 70vw;
-                height: 2vw;
-                bottom: 10px;
-            }
-
-            .chatMessage {
-                margin-left: 5px;
-                margin-bottom: 5px;
-                position: relative;
-                width: 70vw;
-                border-style: solid;
-            }
-        </style>
+        <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     </head>
     

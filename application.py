@@ -34,9 +34,10 @@ def giveChannels():
 @socketio.on("add message")
 def addmessage(data):
     message = data["message"]
+    speaker = data["speaker"]
     channelToAdd = data["channel"]
-    Channels[channelToAdd].append(message)
-    emit ("display appended message", {"message": message}, broadcast = True)
+    Channels[channelToAdd].append((message,speaker))
+    emit ("display appended message", {"message": message, "speaker": speaker}, broadcast = True)
     
 @socketio.on("get messages")
 def getMessages(data):

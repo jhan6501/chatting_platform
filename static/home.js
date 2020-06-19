@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.emit("get channels")
     }
 
-    function appendMessage(userMessage, currentChannel){
+    function appendMessage(userMessage, currentChannel, speaker){
         
         console.log("appending a message")
         
         textToAdd = document.getElementById("user_name").innerHTML + ": "+ userMessage
-        socket.emit('add message', {'message': textToAdd, 'channel': currentChannel})
+        socket.emit('add message', {'message': textToAdd, 'channel': currentChannel, 'speaker': speaker})
     }
 
     give_name();
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("the person who tried to puta message is:" + document.getElementById("user_name").innerHTML)
 
             if (containsNonSpace && currChannel != null) {
-                appendMessage(text, currChannel)
+                appendMessage(text, currChannel, document.getElementById("user_name").innerHTML)
             }
         }
     })
@@ -98,23 +98,40 @@ document.addEventListener('DOMContentLoaded', () => {
             
         console.log(message)
         for (let i = 0; i < message.length; i++) {
-            currMessage = message[i];
+            currMessage = message[i][0];
+            speaker = message[i][1]
+            let lineBox = document.createElement('div')
+            lineBox.className = 'line'
             let div = document.createElement('div')
-            div.className = 'chatMessage'
+            if (speaker === document.getElementById("user_name").innerHTML) {
+                div.className = 'chatMessageUser'
+            } else {
+                div.className = 'chatMessageOther'
+            }
             div.innerHTML = currMessage
-
-            document.querySelector('#messages').append(div)
+            lineBox.append(div)
+            document.querySelector('#messages').append(lineBox)
         }
     })
 
     socket.on("display appended message", data => {
         console.log("displaying")
         textToAdd = data["message"]
+        speaker = data["speaker"]
         if (currChannel === document.getElementById("currChannel").innerHTML) {
+            let lineBox = document.createElement('div')
+            lineBox.className = 'line'
             let messageToAdd = document.createElement('div')
-            messageToAdd.className = 'chatMessage'
+            if (speaker === document.getElementById("user_name").innerHTML) {
+                messageToAdd.className = 'chatMessageUser'
+                console.log("user message")
+            } else {
+                messageToAdd.className = 'chatMessageOther'
+                console.log("other message")
+            }
             messageToAdd.innerHTML = textToAdd
-            document.querySelector('#messages').append(messageToAdd)  
+            lineBox.append(messageToAdd)
+            document.querySelector('#messages').append(lineBox)  
         }
     })
     

@@ -1,0 +1,80 @@
+.left {
+    position: relative;
+    width : 25vw;
+    height: 100vh;
+    float: left;
+    overflow-y: scroll;
+}
+
+.right {
+    position: relative;
+    margin-left: 25vw;
+    height: 100vh;
+}
+
+.channel {
+    width: 20vw;
+    padding: 0px;
+    margin-bottom: 10px;
+    border-style: solid;
+}
+
+.channelText {
+    width: 15vw;
+    height: 35px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.channelSubmit {
+    width: 5vw;
+    height: 35px;
+    font-size: 10px;
+}
+
+.currChannel {
+    position: relative;
+    margin-left: 5px;
+    margin-bottom: 20px;
+    height: 35px;
+    font-size: 35px;
+}
+.messageBoard {
+    position: relative;
+    width: 75vw;
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+.userMessage {
+    margin-left: 5px;
+    position: fixed;
+    width: 70vw;
+    height: 2vw;
+    bottom: 10px;
+}
+
+.line {
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    position: relative;
+    /* border: 3px solid yellow; */
+}
+
+.chatMessageOther {
+    margin-left: 5px;
+    margin-bottom: 5px;
+    position: relative;
+    border: 3px solid;
+}
+
+.chatMessageUser {
+    margin-right: 5px;
+    margin-bottom:5px;
+    position: relative;
+    margin-left: 100px;
+    text-align: right;
+    border: 3px solid blue;
+}
+
